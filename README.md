@@ -1,6 +1,6 @@
-# journeyai
+# journeyai Emergency Response Notification System
 
-A flutter project for journey ai.An application for MS
+A flutter project for an Assistant Driver System ERN.
 
 ## Getting Started
 
