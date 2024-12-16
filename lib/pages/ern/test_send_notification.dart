@@ -32,9 +32,9 @@ class PushNotificationService extends StatelessWidget {
 
   Future<void> sendNotification(String driverCondition, Position position, String username, String timestamp, String driverId) async {
       final String serverAccessTokenkey = await getAccessToken();
-      String endpointFirebaseCloudMessaging = 'https://fcm.googleapis.com/v1/projects/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/messages:send';
+      String endpointFirebaseCloudMessaging = 'https://fcm.googleapis.com/v1/projects/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxx';
 
-      // Reactjs web app dashboard fcm token
+      //  fcm token
       final String deviceToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
       final Map<String, dynamic> message = {
