@@ -1,9 +1,5 @@
-# journeyai
-
-A flutter project for journey ai.An application for MS
+# Emergency response and notification system
 
 ## Getting Started
 
-This project is a starting point for the Flutter application.
-
-It includes code to detect objects in the road as well as measuring the state of the data in realtime and making alerts.
+Real-time location tracking with alerts sent via SMS, multi-tiered notifications, driver behaviour logs and admin web app 
