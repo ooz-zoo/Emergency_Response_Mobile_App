@@ -40,57 +40,5 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB7bpQ861TsPkCqeF_D5822xjYqmlRXpH4',
-    appId: '1:583160827071:web:65389d087800b36f214a0a',
-    messagingSenderId: '583160827071',
-    projectId: 'emergencyresponse-8e3cd',
-    authDomain: 'emergencyresponse-8e3cd.firebaseapp.com',
-    storageBucket: 'emergencyresponse-8e3cd.firebasestorage.app',
-    measurementId: 'G-RZ5JDGE9Y0',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDkoYExn8j5fDkOwWhxlHxR4leIsLAhtew',
-    appId: '1:583160827071:android:f07eb7f4420b0e49214a0a',
-    messagingSenderId: '583160827071',
-    projectId: 'emergencyresponse-8e3cd',
-    storageBucket: 'emergencyresponse-8e3cd.firebasestorage.app',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB6BSPQin33nIfxmC0szoZh4QEW55oWVsk',
-    appId: '1:583160827071:ios:a7b600377c3ad6dd214a0a',
-    messagingSenderId: '583160827071',
-    projectId: 'emergencyresponse-8e3cd',
-    storageBucket: 'emergencyresponse-8e3cd.firebasestorage.app',
-    androidClientId:
-        '583160827071-k1he2os9ktag8n4ff9k5icdh96hm5hp9.apps.googleusercontent.com',
-    iosClientId:
-        '583160827071-rpmbrvt3idha78k87etc40eal8i7gmq1.apps.googleusercontent.com',
-    iosBundleId: 'com.journeyai.system.journeyai',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyB6BSPQin33nIfxmC0szoZh4QEW55oWVsk',
-    appId: '1:583160827071:ios:a7b600377c3ad6dd214a0a',
-    messagingSenderId: '583160827071',
-    projectId: 'emergencyresponse-8e3cd',
-    storageBucket: 'emergencyresponse-8e3cd.firebasestorage.app',
-    androidClientId:
-        '583160827071-k1he2os9ktag8n4ff9k5icdh96hm5hp9.apps.googleusercontent.com',
-    iosClientId:
-        '583160827071-rpmbrvt3idha78k87etc40eal8i7gmq1.apps.googleusercontent.com',
-    iosBundleId: 'com.journeyai.system.journeyai',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyB7bpQ861TsPkCqeF_D5822xjYqmlRXpH4',
-    appId: '1:583160827071:web:20d5ca7813889337214a0a',
-    messagingSenderId: '583160827071',
-    projectId: 'emergencyresponse-8e3cd',
-    authDomain: 'emergencyresponse-8e3cd.firebaseapp.com',
-    storageBucket: 'emergencyresponse-8e3cd.firebasestorage.app',
-    measurementId: 'G-SKYYQBP0VE',
-  );
+  // firebase creds
 }
