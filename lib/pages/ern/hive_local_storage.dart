@@ -7,6 +7,7 @@ part 'hive_local_storage.g.dart';
 
 class HiveService {
   static const String boxName = "driverConditions";
+  static bool isDataPrinted = false;
 
   static Future<void> init() async {
     final appDocumentDir = await getApplicationDocumentsDirectory();
@@ -23,6 +24,8 @@ class HiveService {
     print("DriverCondition added to Hive: ${condition.toMap()} at slot $slot");
   }
 
+
+
   static Map<int, DriverCondition> getLastRecordedValuePerHour() {
     final box = Hive.box<DriverCondition>(boxName);
     Map<int, DriverCondition> lastRecordedPerHour = {};
@@ -34,9 +37,16 @@ class HiveService {
       }
     }
 
-    print("Last recorded values per hour: ${lastRecordedPerHour.map((key, value) => MapEntry(key, value.toMap()))}");
+    // Print data only if it hasn't been printed yet
+    if (!isDataPrinted) {
+      print("Last recorded values per hour: ${lastRecordedPerHour.map((key, value) => MapEntry(key, value.toMap()))}");
+      isDataPrinted = true;
+    }
+
     return lastRecordedPerHour;
   }
+
+
 
   static Future<double> getLastRecordedSafetyScore() async {
     final box = Hive.box<DriverCondition>(boxName);

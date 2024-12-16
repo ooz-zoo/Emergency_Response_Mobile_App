@@ -1,16 +1,9 @@
-# journeyai Emergency Response Notification System
+# journeyai
 
-A flutter project for an Assistant Driver System ERN.
+A flutter project for journey ai.An application for MS
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for the Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+It includes code to detect objects in the road as well as measuring the state of the data in realtime and making alerts.

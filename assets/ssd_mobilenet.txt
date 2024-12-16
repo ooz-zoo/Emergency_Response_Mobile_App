@@ -1,0 +1,13 @@
+NoHonking
+80km
+NoStraight
+70km
+5km
+15km
+30km
+40km
+50km
+Stop
+NoLeftTurn
+NoRightTurn
+NoUTurn

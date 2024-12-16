@@ -161,7 +161,7 @@ class AlertGenerator {
 
       // Generate Google Maps URL
       //String mapUrl = 'https://goo.gl/maps/?q=${position.latitude},${position
-          //.longitude}';
+      //.longitude}';
       String mapUrl = 'https://www.google.com/maps/search/?api=1&query=${position.latitude},${position.longitude}';
 
       String location = '$street, $city\nMap: $mapUrl';
@@ -283,7 +283,7 @@ class AlertGenerator {
   }
 }
 
-  class AlertScreen extends StatelessWidget {
+class AlertScreen extends StatelessWidget {
   final AlertGenerator _alertGenerator = AlertGenerator();
 
   @override
@@ -304,140 +304,3 @@ class AlertGenerator {
   }
 }
 
-
-// import 'package:flutter/material.dart';
-// import 'package:telephony_sms_handler/telephony.dart';
-//
-// class AlertScreen extends StatefulWidget {
-//   @override
-//   _AlertScreenState createState() => _AlertScreenState();
-// }
-//
-// class _AlertScreenState extends State<AlertScreen> {
-//   final Telephony telephony = Telephony.instance;
-//
-//   // Emergency contact number
-//   final String emergencyNumber = "+254706497398";
-//   // Number of retries to check for acknowledgment
-//   final int maxRetries = 3;
-//   // Delay between each retry in seconds
-//   final int retryDelay = 30;
-//   // Timestamp when the alert message is sent
-//   late DateTime alertSentTime;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     // Request permissions at the start
-//     requestPermissions();
-//   }
-//
-//   void requestPermissions() async {
-//     bool? permissionsGranted = await telephony.requestPhoneAndSmsPermissions;
-//     if (permissionsGranted != true) {
-//       print("Permissions not granted");
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(content: Text("Permissions not granted")),
-//       );
-//     }
-//   }
-//
-//   // Function to send SMS alert
-//   void _sendSMS() async {
-//     try {
-//       alertSentTime = DateTime.now(); // Record the time when the alert is sent
-//       await telephony.sendSms(
-//         to: emergencyNumber,
-//         message: "Emergency Alert! Please reply with '1' to acknowledge receipt or '2' to cancel.",
-//       );
-//       print("Alert message sent successfully.");
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(content: Text("Alert message sent successfully!")),
-//       );
-//       // Start checking for acknowledgment with retries
-//       _checkAcknowledgmentWithRetries(0);
-//     } catch (e) {
-//       print("Failed to send SMS: $e");
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(content: Text("Failed to send alert message.")),
-//       );
-//     }
-//   }
-//
-//   // Function to query the inbox for acknowledgment or cancellation with retries
-//   void _checkAcknowledgmentWithRetries(int retryCount) async {
-//     try {
-//       // Query the inbox for the latest message from the emergency number
-//       List<SmsMessage> messages = await telephony.getInboxSms(
-//         filter: SmsFilter.where(SmsColumn.ADDRESS).equals(emergencyNumber),
-//         sortOrder: [OrderBy(SmsColumn.DATE, sort: Sort.DESC)], // Get latest messages first
-//       );
-//
-//       if (messages.isNotEmpty) {
-//         // Check the latest message received after the alert was sent
-//         SmsMessage? latestMessage;
-//         for (var message in messages) {
-//           if (message.date != null && DateTime.fromMillisecondsSinceEpoch(message.date!).isAfter(alertSentTime)) {
-//             latestMessage = message;
-//             break;
-//           }
-//         }
-//
-//         if (latestMessage != null) {
-//           String? latestMessageBody = latestMessage.body?.trim();
-//           if (latestMessageBody == '1') {
-//             print('Acknowledgment received!');
-//             ScaffoldMessenger.of(context).showSnackBar(
-//               SnackBar(content: Text("Acknowledgment received!")),
-//             );
-//           } else if (latestMessageBody == '2') {
-//             print('Cancellation received!');
-//             ScaffoldMessenger.of(context).showSnackBar(
-//               SnackBar(content: Text("Cancellation received!")),
-//             );
-//           } else {
-//             _retryCheckAcknowledgment(retryCount);
-//           }
-//         } else {
-//           _retryCheckAcknowledgment(retryCount);
-//         }
-//       } else {
-//         _retryCheckAcknowledgment(retryCount);
-//       }
-//     } catch (e) {
-//       print("Failed to query messages: $e");
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(content: Text("Failed to check message history.")),
-//       );
-//     }
-//   }
-//
-//   // Function to retry checking for acknowledgment
-//   void _retryCheckAcknowledgment(int retryCount) {
-//     if (retryCount < maxRetries) {
-//       Future.delayed(Duration(seconds: retryDelay), () {
-//         _checkAcknowledgmentWithRetries(retryCount + 1);
-//       });
-//     } else {
-//       print('No valid response found after maximum retries.');
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(content: Text("No valid acknowledgment response found after maximum retries.")),
-//       );
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Emergency Alert System'),
-//       ),
-//       body: Center(
-//         child: ElevatedButton(
-//           onPressed: _sendSMS,
-//           child: Text('Send Emergency Alert'),
-//         ),
-//       ),
-//     );
-//   }
-// }

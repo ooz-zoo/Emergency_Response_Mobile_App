@@ -2,20 +2,30 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:telephony_sms_handler/telephony.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:http/http.dart' as http;
+import 'package:latlong2/latlong.dart';
+import 'dart:convert';
 
 class DriverStateService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Telephony telephony = Telephony.instance;
 
+  // Initial location for the map
+  LatLng? _currentPosition;
+  LatLng? get currentPosition => _currentPosition;
+
+  //void setCurrentPosition(LatLng position, Function(LatLng) updateState) { _currentPosition = position; updateState(position);}
+
   String getCurrentUserId() {
     User? user = _auth.currentUser;
     return user != null ? user.uid : '';
   }
+
 
   Future<List<Map<String, String>>> fetchEmergencyContacts() async {
     List<Map<String, String>> contacts = [];
@@ -72,6 +82,7 @@ class DriverStateService {
     }
   }
 
+
   Future<void> sendAlert(String alertType, String message,
       Map<String, String> contact) async {
     String location = await getCurrentLocationWithLogging();
@@ -122,6 +133,12 @@ class DriverStateService {
         position.latitude, position.longitude,
       );
 
+
+        _currentPosition = LatLng(position.latitude, position.longitude);
+        //_coordinates = 'Coordinates: ${position.latitude.toStringAsFixed(4)}° N, ${position.longitude.toStringAsFixed(4)}° E';
+        //_isLoading = true;
+
+
       String street = placemarks[0].street ?? 'Unknown street';
       String city = placemarks[0].locality ?? 'Unknown city';
       //String mapUrl = 'https://goo.gl/maps/?q=${position.latitude},${position
@@ -151,7 +168,6 @@ class DriverStateService {
       throw Exception('Failed to shorten URL');
     }
   }
-
 
   Future<void> checkAcknowledgmentWithRetries(BuildContext context, List<Map<String, String>> emergencyContacts, int retryCount, DateTime alertSentTime, String location, String driverStatus) async {
     if (retryCount >= emergencyContacts.length) {
@@ -208,19 +224,17 @@ class DriverStateService {
     }
   }
 
-
-
   Future<void> assessDriverState(BuildContext context,
       String driverCondition) async {
     String message;
     switch (driverCondition) {
-      case 'drunk':
+      case 'Drunk':
         message = 'Alert: Driver is potentially drunk!';
         break;
-      case 'drowsy':
+      case 'Drowsy':
         message = 'Warning: Driver is drowsy and may fall asleep!';
         break;
-      case 'awake/sober':
+      case 'Sober/Awake':
         print('No alert sent. Driver is awake or sober.');
         return;
       default:
@@ -252,3 +266,9 @@ class DriverStateService {
     );
   }
 }
+
+TileLayer get openStreetMapTileLayer => TileLayer(
+  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+);
+
