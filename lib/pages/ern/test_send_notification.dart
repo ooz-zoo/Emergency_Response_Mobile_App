@@ -9,11 +9,7 @@ import 'package:geolocator/geolocator.dart';
 
 class PushNotificationService extends StatelessWidget {
   static Future<String> getAccessToken() async {
-    final serviceAccountJson =
-    {
-      
-    };
-
+    // service account creds
     List<String> scopes = [
       "https://www.googleapis.com/auth/firebase.messaging"
     ];
